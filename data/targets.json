@@ -1,0 +1,28 @@
+{
+ "_comment": "One jar per Minecraft version. Each port is an optional dependency; the jar only adds attribute files, so a port that is not installed costs nothing. Better Combat is required at any version: every Better Combat build and fork (Rekindled Combat included) uses the mod id bettercombat and the same weapon_attributes format.",
+ "version": "0.3.0",
+ "ports": {
+  "spartan_weaponry_unofficial": "Spartan Weaponry Unofficial",
+  "spartanweaponry": "Spartan Weaponry",
+  "spartanfire": "Spartan Weaponry: Ice and Fire"
+ },
+ "targets": {
+  "1.20.1": {"suffix": "+1.20.1-forge", "loaders": ["forge"], "minecraft": {"forge": "[1.20.1]"},
+             "pack_format": 15, "items": ["original-1.20.1", "spartanfire-1.20.1"]},
+  "1.21.1": {"suffix": "+1.21.1", "loaders": ["neoforge", "fabric"],
+             "minecraft": {"neoforge": "[1.21.1]", "fabric": "1.21.1"}, "pack_format": 48,
+             "items": ["maixiyu-1.21.1", "vladeezy-1.21.1", "sanufsoii-1.21.1", "spartanfire-1.21.1"]},
+  "1.21.11": {"suffix": "+1.21.11", "loaders": ["neoforge", "fabric"],
+              "minecraft": {"neoforge": "[1.21.11]", "fabric": "1.21.11"}, "pack_format": null,
+              "items": ["vladeezy-1.21.11"]},
+  "26.1": {"suffix": "+26.1", "loaders": ["neoforge", "fabric"],
+           "minecraft": {"neoforge": "[26.1,26.2)", "fabric": ">=26.1 <26.2"}, "pack_format": null,
+           "items": ["maixiyu-26.1", "vladeezy-26.1.2"]},
+  "26.2": {"suffix": "+26.2", "loaders": ["neoforge", "fabric"],
+           "minecraft": {"neoforge": "[26.2,26.3)", "fabric": ">=26.2 <26.3"}, "pack_format": null,
+           "items": ["vladeezy-26.2"]},
+  "26.3": {"suffix": "+26.3", "loaders": ["neoforge", "fabric"],
+           "minecraft": {"neoforge": "[26.3,26.4)", "fabric": ">=26.3 <26.4"}, "pack_format": null,
+           "items": ["vladeezy-26.3"]}
+ }
+}

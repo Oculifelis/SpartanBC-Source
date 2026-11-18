@@ -1,0 +1,6 @@
+build/
+.gradle/
+test/*/build/
+test/*/.gradle/
+test/*/libs/
+test/*/run-gametest/

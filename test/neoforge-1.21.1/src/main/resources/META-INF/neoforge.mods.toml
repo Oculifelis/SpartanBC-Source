@@ -1,0 +1,15 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "MIT"
+
+[[mods]]
+modId = "spartan_bc_gametest"
+version = "0"
+displayName = "Spartan x Better Combat GameTests (dev only)"
+
+[[dependencies.spartan_bc_gametest]]
+modId = "spartan_bc"
+type = "required"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"

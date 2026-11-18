@@ -1,0 +1,57 @@
+plugins {
+    id 'java'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+
+// GameTests for the 1.21.1 jar. The jar itself is built by ../../tools/build.py (no code in it); this project only
+// holds the test mod. The other mods in the test run (Better Combat, its libraries, a Spartan port) sit in
+// libs/runtime/ (not committed) and are copied into the run's mods/ folder with the freshly built jar.
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+repositories { mavenCentral() }
+
+def root = file('../..')
+def betterCombat = fileTree('libs/runtime') { include 'bettercombat-*.jar' }
+
+dependencies {
+    compileOnly betterCombat
+}
+
+neoForge {
+    version = project.neo_version
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+    runs {
+        gameTestServer {
+            type = "gameTestServer"
+            gameDirectory = project.file('run-gametest')
+            systemProperty 'neoforge.enabledGameTestNamespaces', 'spartan_bc_gametest'
+            jvmArgument '-Xmx2G'
+            jvmArgument '-XX:ActiveProcessorCount=4'
+        }
+    }
+    mods {
+        spartan_bc_gametest { sourceSet(sourceSets.main) }
+    }
+}
+
+def buildJar = tasks.register('buildSpartanBC', Exec) {
+    workingDir root
+    commandLine 'python', '-I', 'tools/build.py', '--target', '1.21.1'
+}
+
+def prepareMods = tasks.register('prepareTestMods', Sync) {
+    dependsOn buildJar
+    from 'libs/runtime'
+    from("${root}/build/libs") { include 'spartan_bc-*+1.21.1.jar' }
+    into 'run-gametest/mods'
+}
+
+tasks.named('processResources', ProcessResources) {
+    dependsOn buildJar
+    from("${root}/build/expected/1.21.1.json") { rename { 'spartan_bc_expected.json' } }
+}
+
+tasks.matching { it.name == 'runGameTestServer' }.configureEach { dependsOn prepareMods }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }

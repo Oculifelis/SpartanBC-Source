@@ -1,0 +1,13 @@
+{
+ "_comment": "Spartan weapon type -> Better Combat preset. Types under skip keep the port's own attributes (thrown weapons).",
+ "melee": {
+  "dagger": "dagger", "parrying_dagger": "dagger", "longsword": "sword", "greatsword": "claymore",
+  "katana": "katana", "saber": "cutlass", "rapier": "rapier", "battleaxe": "double_axe",
+  "warhammer": "hammer", "battle_hammer": "hammer", "flanged_mace": "mace", "club": "mace",
+  "cestus": "fist", "spear": "spear", "pike": "spear", "lance": "lance", "halberd": "halberd",
+  "glaive": "glaive", "quarterstaff": "battlestaff", "scythe": "scythe",
+  "longbow": "bow_two_handed_heavy", "heavy_crossbow": "crossbow_two_handed_heavy"
+ },
+ "skip": ["javelin", "throwing_knife", "tomahawk", "boomerang"],
+ "plural": {"cestus": "cestusae", "quarterstaff": "quarterstaves", "battleaxe": "battleaxes"}
+}
